@@ -1,0 +1,86 @@
+asyncapi: 2.6.0
+info:
+  title: Product Service 
+  version: "1.0"
+  description: create products ,sms notifications,  notifications.
+  contact:
+    name: Ankit
+    email: reporteria.universitaria@funiber.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+channels:
+  produnct-service.create_product:
+    publish:
+      summary: create products associated with user 
+      operationId: CreateProduct 
+      message:
+        $ref: "#/components/messages/ProductCreated"    
+  produnct-service.push_notification:
+    publish:
+      summary: push notification 
+      operationId: PushNotification 
+      message:
+        $ref: "#/components/messages/PushNotification"    
+  produnct-service.sms_notification:
+    publish:
+      summary: SMS notification 
+      operationId: SMSNotification 
+      message:
+        $ref: "#/components/messages/SMSNotification"    
+
+
+
+components:
+  messages:
+    ProductCreated:
+      name: ProductCreation
+      title: Product Creation
+      contentType: application/json
+      payload:
+        type: object
+        description: Contains all the products 
+        properties:
+          products:
+            $ref: "#/components/schemas/product"    
+    PushNotification:
+      name: PushNotification
+      title: Push Notification
+      contentType: application/json
+      payload:
+        type: object
+        description: Contains notification message
+        properties:
+          message:
+            $ref: "#/components/schemas/message"    
+    SMSNotification:
+      name: PushNotification
+      title: Push Notification
+      contentType: application/json
+      payload:
+        type: object
+        description: Contains notification message
+        properties:
+          message:
+            $ref: "#/components/schemas/message"
+  schemas:            
+   product:
+      title: product
+      type: object
+      description: Contains product details
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        price:
+          type: string
+        rating:
+          type: integer
+        brand: 
+          type: string
+   message:
+      title: product
+      type: string 
+      description: Contains product details
